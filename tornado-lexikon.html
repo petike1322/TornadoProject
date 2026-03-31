@@ -4,10 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tornádóközpont | Tornádó lexikon</title>
-  <style>/* ugyanaz a fő CSS */</style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>... (nav) ...</header>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo"><a href="index.html">🌪️ Tornádóközpont</a></div>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Menü megnyitása">☰</button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Kezdőlap</a></li>
+          <li><a href="tornado-biztonsag.html">Tornádó biztonság</a></li>
+          <li><a href="riasztasi-szintek.html">Riasztási szintek</a></li>
+          <li><a href="tornado-lexikon.html">Tornádó lexikon</a></li>
+        </ul>
+        <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Sötét/világos mód">🌓 Sötét mód</button>
+      </nav>
+    </div>
+  </header>
   <main class="container">
     <h1>Tornádó lexikon – magyarázatok laikusoknak</h1>
     <div class="search-box">
@@ -37,6 +51,20 @@
       <p>Víz felszíne felett kialakuló tornádó, általában gyengébb, de ha partot ér, okozhat károkat.</p>
     </article>
   </main>
-  <footer>... (lábléc) ...</footer>
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div>🌪️ Tornádóközpont – Tájékoztatás laikusoknak</div>
+        <div class="footer-links">
+          <a href="https://www.met.hu/" target="_blank">HungaroMet</a>
+          <a href="https://www.katasztrofavedelem.hu/" target="_blank">Katasztrófavédelem</a>
+          <a href="https://www.ready.gov/hu" target="_blank">Felkészülés</a>
+        </div>
+      </div>
+      <div class="footer-note">
+        Ez az oldal általános tájékoztatást nyújt, nem helyettesíti a hivatalos előrejelzéseket és riasztásokat.
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

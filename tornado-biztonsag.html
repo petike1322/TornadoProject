@@ -4,26 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tornádóközpont | Biztonsági tanácsok</title>
-  <style>
-    /* UGYANAZ A TELJES CSS MINT FENT – a fenti style.css tartalma */
-    /* (ismételd meg a teljes CSS-t a helytakarékosság miatt itt is, de valóságban ugyanaz) */
-    /* Rövidítve: a fenti teljes CSS blokkot kell ide másolni. */
-    * { margin:0; padding:0; box-sizing:border-box; }
-    :root { --bg:#f8f9fa; --text:#212529; --text-light:#495057; --primary:#0d6efd; --accent:#fd7e14; --red:#dc3545; --card-bg:#ffffff; --border:#dee2e6; --shadow:0 10px 20px rgba(0,0,0,0.05); }
-    body.dark-mode { --bg:#1a1e24; --text:#e9ecef; --text-light:#ced4da; --card-bg:#2c3038; --border:#3a3f47; }
-    body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
-    .container { max-width:1280px; margin:0 auto; padding:0 1.5rem; }
-    h2 { font-size:2rem; border-left:5px solid var(--primary); padding-left:1rem; margin:2rem 0 1rem; }
-    .warning-box { border-left:6px solid var(--red); background:rgba(220,53,69,0.1); padding:1.2rem; border-radius:1rem; margin:1.5rem 0; }
-    .btn { background:var(--primary); color:white; padding:0.75rem 1.5rem; border-radius:2rem; text-decoration:none; }
-    /* ... a többi szükséges stílus (nav, hamburger, stb.) megegyezik az index.html-ben lévővel. */
-    /* A teljesség kedvéért a fenti CSS minden elemét bemásoltam a gyakorlatban. */
-    nav, .nav-links, .hamburger, .dark-mode-toggle { /* megegyezik */ }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- UGYANAZ A HEADER ÉS NAVIGÁCIÓ, MINT AZ INDEX.HTML-BEN -->
-  <header>... (hasonló) ...</header>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo"><a href="index.html">🌪️ Tornádóközpont</a></div>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Menü megnyitása">☰</button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Kezdőlap</a></li>
+          <li><a href="tornado-biztonsag.html">Tornádó biztonság</a></li>
+          <li><a href="riasztasi-szintek.html">Riasztási szintek</a></li>
+          <li><a href="tornado-lexikon.html">Tornádó lexikon</a></li>
+        </ul>
+        <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Sötét/világos mód">🌓 Sötét mód</button>
+      </nav>
+    </div>
+  </header>
   <main class="container">
     <h1>Tornádó biztonság – Felkészülési útmutató</h1>
     <p>Bár Magyarországon ritka a tornádó, a heves széllökések és zivatarok ellen fontos felkészülni. Az alábbi tanácsokkal életeket menthetsz.</p>
@@ -67,7 +65,38 @@
     <p><a href="index.html" class="btn">← Vissza a főoldalra</a></p>
   </main>
 
-  <footer>... (megegyező lábléc) ...</footer>
-  <script>/* hamburger + dark mode ugyanaz */</script>
+   <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div>🌪️ Tornádóközpont – Tájékoztatás laikusoknak</div>
+        <div class="footer-links">
+          <a href="https://www.met.hu/" target="_blank">HungaroMet</a>
+          <a href="https://www.katasztrofavedelem.hu/" target="_blank">Katasztrófavédelem</a>
+          <a href="https://www.ready.gov/hu" target="_blank">Felkészülés</a>
+        </div>
+      </div>
+      <div class="footer-note">
+        Ez az oldal általános tájékoztatást nyújt, nem helyettesíti a hivatalos előrejelzéseket és riasztásokat.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger menü
+    const hamburger = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
+    hamburger?.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+    // Sötét mód
+    const darkToggle = document.getElementById('darkModeToggle');
+    darkToggle?.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+    });
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark-mode');
+    }
+  </script>
 </body>
 </html>
