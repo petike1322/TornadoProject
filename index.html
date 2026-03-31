@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Tornádóközpont | Mindent a tornádókról</title>
+  <meta name="description" content="Magyar nyelvű, közérthető információk a tornádókról, veszélyekről, biztonsági tanácsokról.">
+  <style>
+    /* IDE KERÜL A FENTI STYLE.CSS TELJES TARTALMA */
+    /* (a teljesség kedvéért itt be kell másolni a teljes CSS-t) */
+    /* A fenti CSS kódot másold ide – a szóköztakarékosság miatt most hivatkozással jelzem */
+    /* Valós implementációban a teljes CSS-t ide kell bemásolni. */
+    /* ----------------------------------------------- */
+    /* TORNÁDÓKÖZPONT - TELJES STÍLUS (mint fent) */
+    /* ----------------------------------------------- */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    :root { --bg:#f8f9fa; --text:#212529; --text-light:#495057; --primary:#0d6efd; --primary-dark:#0b5ed7; --accent:#fd7e14; --accent-dark:#e96b0a; --yellow:#ffc107; --orange:#fd7e14; --red:#dc3545; --card-bg:#ffffff; --border:#dee2e6; --shadow:0 10px 20px rgba(0,0,0,0.05), 0 6px 6px rgba(0,0,0,0.03); --transition:all 0.2s ease; }
+    body.dark-mode { --bg:#1a1e24; --text:#e9ecef; --text-light:#ced4da; --card-bg:#2c3038; --border:#3a3f47; --shadow:0 10px 20px rgba(0,0,0,0.2); }
+    body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg); color: var(--text); line-height:1.5; transition: background-color 0.3s, color 0.2s; scroll-behavior:smooth; }
+    .container { max-width:1280px; margin:0 auto; padding:0 1.5rem; }
+    h1,h2,h3 { font-weight:700; line-height:1.2; letter-spacing:-0.02em; }
+    h1 { font-size:2.5rem; margin-bottom:1rem; }
+    h2 { font-size:2rem; margin:2rem 0 1rem; border-left:5px solid var(--primary); padding-left:1rem; }
+    h3 { font-size:1.5rem; margin:1.5rem 0 0.75rem; }
+    p { margin-bottom:1rem; color:var(--text-light); }
+    a { color:var(--primary); text-decoration:none; transition:var(--transition); }
+    a:hover { color:var(--primary-dark); text-decoration:underline; }
+    header { background-color:var(--card-bg); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; backdrop-filter:blur(8px); background-color:rgba(var(--card-bg-rgb,255,255,255),0.9); }
+    body.dark-mode header { background-color:rgba(44,48,56,0.95); }
+    nav { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; padding:1rem 0; }
+    .logo a { font-size:1.8rem; font-weight:800; background:linear-gradient(135deg, var(--primary), var(--accent)); background-clip:text; -webkit-background-clip:text; color:transparent; text-decoration:none; }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links li a { font-weight:500; color:var(--text); }
+    .hamburger { display:none; flex-direction:column; cursor:pointer; background:none; border:none; gap:5px; }
+    .hamburger span { width:25px; height:3px; background-color:var(--text); border-radius:3px; transition:0.2s; }
+    .dark-mode-toggle { background:none; border:1px solid var(--border); border-radius:2rem; padding:0.4rem 0.8rem; cursor:pointer; font-size:1rem; background-color:var(--card-bg); color:var(--text); transition:var(--transition); }
+    .btn { display:inline-block; background-color:var(--primary); color:white; padding:0.75rem 1.5rem; border-radius:2rem; font-weight:600; transition:var(--transition); border:none; cursor:pointer; margin-right:0.75rem; margin-bottom:0.5rem; }
+    .btn-outline { background-color:transparent; border:2px solid var(--primary); color:var(--primary); }
+    .btn-outline:hover { background-color:var(--primary); color:white; }
+    .btn-accent { background-color:var(--accent); }
+    .hero { text-align:center; padding:4rem 1rem; background:linear-gradient(135deg, rgba(13,110,253,0.05), rgba(253,126,20,0.05)); border-radius:2rem; margin:2rem 0; }
+    .card-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:2rem; margin:2rem 0; }
+    .card { background-color:var(--card-bg); border-radius:1.5rem; padding:1.8rem; box-shadow:var(--shadow); transition:transform 0.2s, box-shadow 0.2s; border:1px solid var(--border); }
+    .card:hover { transform:translateY(-5px); }
+    .warning-box { border-left:6px solid var(--red); background-color:rgba(220,53,69,0.1); padding:1.2rem; border-radius:1rem; margin:1.5rem 0; }
+    .table-responsive { overflow-x:auto; margin:2rem 0; }
+    .level-table { width:100%; border-collapse:collapse; background-color:var(--card-bg); border-radius:1rem; overflow:hidden; }
+    .level-table th, .level-table td { padding:1rem; text-align:left; border-bottom:1px solid var(--border); }
+    .level-table th { background-color:var(--primary); color:white; }
+    footer { background-color:var(--card-bg); border-top:1px solid var(--border); margin-top:4rem; padding:2rem 0; }
+    .footer-content { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1.5rem; }
+    @media (max-width:768px) {
+      .container { padding:0 1rem; }
+      h1 { font-size:2rem; }
+      .hamburger { display:flex; }
+      .nav-links { display:none; width:100%; flex-direction:column; gap:1rem; padding:1rem 0; text-align:center; }
+      .nav-links.show { display:flex; }
+      .footer-content { flex-direction:column; text-align:center; }
+    }
+    @media (min-width:769px) { .nav-links { display:flex !important; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo"><a href="index.html">🌪️ Tornádóközpont</a></div>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Menü megnyitása">☰</button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Kezdőlap</a></li>
+          <li><a href="tornado-biztonsag.html">Tornádó biztonság</a></li>
+          <li><a href="riasztasi-szintek.html">Riasztási szintek</a></li>
+          <li><a href="tornado-lexikon.html">Tornádó lexikon</a></li>
+        </ul>
+        <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Sötét/világos mód">🌓 Sötét mód</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero szekció -->
+    <section class="hero">
+      <h1>Tornádóközpont – mindent a tornádókról</h1>
+      <p>A tornádó egy hevesen forgó légoszlop, amely a zivatarfelhőtől a földfelszínig ér. Sebessége elérheti a 400 km/h-t is, és hatalmas pusztítást végezhet.</p>
+      <div class="hero-buttons">
+        <a href="tornado-biztonsag.html" class="btn">Ismerd meg a veszélyeket</a>
+        <a href="riasztasi-szintek.html" class="btn btn-outline">Nézd meg a riasztásokat</a>
+      </div>
+    </section>
+
+    <!-- Mi az a tornádó? -->
+    <section>
+      <h2>Mi az a tornádó?</h2>
+      <p>A tornádó egy hevesen forgó levegőoszlop, amely egy szupercella felhőből indul ki és a talajt is eléri. A forgás intenzitása olyan erős lehet, hogy a legkomolyabb épületeket is romba dönti. Kialakulásához nedves, meleg levegő és erős szélnyírás szükséges, ami a felhőkben függőleges forgást hoz létre. A szakértők a <strong>szupercellát</strong> tartják a tornádók fő forrásának, de nem minden szupercella produkál tornádót.</p>
+      <p>A tornádókat a Fujita-skála (EF) szerint osztályozzák, a károk alapján.</p>
+    </section>
+
+    <!-- 3 kártya -->
+    <div class="card-grid">
+      <article class="card">
+        <h3>🌩️ Előjelek</h3>
+        <ul>
+          <li>Sötét, zöldessárga égbolt</li>
+          <li>Jégeső, erős széllökés</li>
+          <li>Tölcsér alakú felhő (tölcsérfelhő)</li>
+          <li>Folyamatos mennydörgés, nagy jégeső</li>
+          <li>„Morgó” hang, mintha tehervonat közeledne</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>⚠️ Veszélyek</h3>
+        <ul>
+          <li>400+ km/h szélsebesség</li>
+          <li>Repülő törmelék (üveg, fa, fém)</li>
+          <li>Épületek összeomlása</li>
+          <li>Közlekedési eszközök felborulása</li>
+          <li>Áradás, jégverés</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>❓ Gyakori tévhitek</h3>
+        <ul>
+          <li><strong>„Tornádó csak Amerikában van”</strong> – Előfordul Magyarországon is, bár ritkábban.</li>
+          <li><strong>„Mindig látható a tölcsér”</strong> – Lehet rejtett, sötét felhők mögött.</li>
+          <li><strong>„Kinyitott ablaknál kisebb a nyomáskülönbség”</strong> – Tévhit! Az ablakokat csukva kell hagyni.</li>
+          <li><strong>„Autóban biztonságban vagy”</strong> – Nem, az autó könnyen felborul.</li>
+        </ul>
+      </article>
+    </div>
+
+    <!-- Magyarországi helyzet -->
+    <section>
+      <h2>Magyarországi helyzet</h2>
+      <p>Magyarországon a tornádók rendkívül ritkák, de az elmúlt évtizedekben előfordultak gyenge tölcsérek és vízitornádók (pl. Balaton). A veszélyt főként a <strong>heves zivatarok, szélviharok és jégeső</strong> jelentik. A HungaroMet időjárás-előrejelzéseit érdemes rendszeresen figyelni, különösen nyári hónapokban, amikor szupercella képződhet.</p>
+      <p><a href="https://www.met.hu/" target="_blank" rel="noopener">👉 HungaroMet hivatalos riasztások</a></p>
+      <div class="warning-box yellow-bg">
+        <strong>📢 Figyelem:</strong> A zivatarok előrejelzésekor tartsd szem előtt a riasztási szinteket!
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div>🌪️ Tornádóközpont – Tájékoztatás laikusoknak</div>
+        <div class="footer-links">
+          <a href="https://www.met.hu/" target="_blank">HungaroMet</a>
+          <a href="https://www.katasztrofavedelem.hu/" target="_blank">Katasztrófavédelem</a>
+          <a href="https://www.ready.gov/hu" target="_blank">Felkészülés</a>
+        </div>
+      </div>
+      <div class="footer-note">
+        Ez az oldal általános tájékoztatást nyújt, nem helyettesíti a hivatalos előrejelzéseket és riasztásokat.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger menü
+    const hamburger = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
+    hamburger?.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+    // Sötét mód
+    const darkToggle = document.getElementById('darkModeToggle');
+    darkToggle?.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+    });
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark-mode');
+    }
+  </script>
+</body>
+</html>
